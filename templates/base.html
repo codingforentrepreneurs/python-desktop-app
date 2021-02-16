@@ -6,6 +6,10 @@
 <p>Template is loaded</p>
 </body>
 <script>
+    function helloWorldFromPy () {
+        console.log("this is working")
+    }
+
     window.addEventListener("pywebviewready", ()=>{
         console.log(window.pywebview)
         // window.pywebview.api.sayName("This is cool!").then(x=>{
