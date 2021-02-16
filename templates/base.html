@@ -5,6 +5,20 @@
 <h1>Hello base</h1>
 <p>Template is loaded</p>
 </body>
+<script>
+    window.addEventListener("pywebviewready", ()=>{
+        console.log(window.pywebview)
+        // window.pywebview.api.sayName("This is cool!").then(x=>{
+        //     console.log(x)
+        // }).catch(err=>{
+        //     console.log("error", err)
+        // })
+
+        setTimeout(()=>{
+            window.pywebview.api.triggerSomeJS()
+        }, 1200)
+    })
+</script>
 
 
 </html>

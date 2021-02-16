@@ -6,6 +6,15 @@ import webview # pip install pywebview
 class API:
     name: str
 
+    def triggerSomeJS(self):
+        print("Trigger is working")
+        return 
+
+    def sayName(self, arg_name=None):
+        if arg_name is not None:
+            print("arg_name", arg_name)
+        return self.name
+
     def helloWorld(self):
         """
         pywebview.api.helloWorld()
@@ -20,5 +29,5 @@ window_args = {
     "js_api": js_api,
     "width": 1200
 }
-webview.create_window("PyDesktop", "templates/base.html", **window_args)
+window = webview.create_window("PyDesktop", "templates/base.html", **window_args)
 webview.start(debug=True)
