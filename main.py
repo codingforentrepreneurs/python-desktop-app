@@ -29,5 +29,5 @@ window_args = {
     "js_api": js_api,
     "width": 1200
 }
-window = webview.create_window("PyDesktop", "templates/base.html", **window_args)
+webview.create_window("PyDesktop", "templates/base.html", **window_args)
 webview.start(debug=True)
