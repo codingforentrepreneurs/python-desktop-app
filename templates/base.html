@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel='stylesheet' href='../assets/css/bootstrap.min.css' />
+        {% include "css.html" %}
     </head>
 
 <body >
     <div class='container'>
+        {% block content %}
     <h1>Hello base</h1>
     <p>Template is loaded</p>
+    {% endblock %}
     </div>
 </body>
 <script>

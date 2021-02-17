@@ -1,6 +1,15 @@
 from dataclasses import dataclass # pip install dataclasses
+import pathlib
+import jinja2
+
 import webview # pip install pywebview
 
+def render_jinja2_html(entrypoint, context={}, base_dir='.'):
+    base_dir = pathlib.Path(base_dir).resolve() # root dir
+    loader = jinja2.FileSystemLoader(searchpath= base_dir / "templates")
+    template_env = jinja2.Environment(loader=loader)
+    template = template_env.get_template(entrypoint)
+    return template.render(**context)
 
 @dataclass
 class API:
@@ -27,11 +36,11 @@ class API:
         return f"Hello world {self.name}"
 
 js_api = API(name='Justin')
-
+rendered_html_str = render_jinja2_html("home.html", context={"name": "PyDesktop App"})
 window_args = {
     "js_api": js_api,
     "width": 1200
 }
-window = webview.create_window("PyDesktop", "templates/base.html", **window_args)
+window = webview.create_window("PyDesktop", html=rendered_html_str, **window_args)
 js_api._window = window
 webview.start(debug=True)
