@@ -16,6 +16,26 @@
     function helloWorldFromPy () {
         console.log("this is working")
     }
+    const pyDesktopForms = document.getElementsByClassName("pydesktop-form") // []
+
+    for (const myPyDesktopForm of pyDesktopForms) {
+        myPyDesktopForm.addEventListener("submit", e=>{
+            myFormSubmitHandler(e, myPyDesktopForm)
+        })
+    }
+
+    const myFormSubmitHandler = (e, myPyDesktopFormEl)=>{
+        e.preventDefault()
+        const myPyHandler = myPyDesktopFormEl.getAttribute("data-py-handler") || "defaultHandleForm"
+        const myFormData = new FormData(myPyDesktopFormEl)
+        const myJsonData = JSON.stringify(Object.fromEntries(myFormData))
+        if (window.pywebview.api[myPyHandler]) {
+            window.pywebview.api[myPyHandler](myJsonData).then(x=>{console.log("working")}).catch(err=>{alert("invalid method")})
+        }
+        
+    }
+
+    
 
     window.addEventListener("pywebviewready", ()=>{
         console.log(window.pywebview)

@@ -1,6 +1,7 @@
 from dataclasses import dataclass # pip install dataclasses
 import pathlib
 import jinja2
+import json
 
 import webview # pip install pywebview
 
@@ -15,6 +16,22 @@ def render_jinja2_html(entrypoint, context={}, base_dir='.'):
 class API:
     name: str
     _window = None
+
+    def myAPIRequest(self, jsonData):
+        print("my api request", jsonData)
+
+    def thisIsMyPyHandler(self, jsonData):
+        print('this is my handler working', jsonData)
+
+    def defaultHandleForm(self, jsonData):
+        print("raw json data", jsonData)
+        data = {}
+        try:
+            data = json.loads(jsonData)
+        except:
+            pass
+        print("python data", data)
+        print('myinputvalue', data.get('myinputname'))
 
     def triggerSomeJS(self):
         print("Trigger is working")
