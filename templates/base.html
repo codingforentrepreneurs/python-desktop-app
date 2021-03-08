@@ -19,9 +19,25 @@
     const pyDesktopForms = document.getElementsByClassName("pydesktop-form") // []
 
     for (const myPyDesktopForm of pyDesktopForms) {
+        const fileSelectEl = myPyDesktopForm.elements['fileInput']
+        const filePathEl = myPyDesktopForm.elements['filePath']
+        const currentFileTextEl = myPyDesktopForm.getElementsByClassName("currentFile")[0]
         myPyDesktopForm.addEventListener("submit", e=>{
             myFormSubmitHandler(e, myPyDesktopForm)
         })
+        if (fileSelectEl) {
+            fileSelectEl.addEventListener("click", e=>{
+                if (e) {
+                    e.preventDefault()
+                }
+                // calll the pywebview api and set 
+                let newPath = "This is my value"
+                filePathEl.setAttribute("value", newPath)
+                if (currentFileTextEl) {
+                    currentFileTextEl.innerText = newPath
+                }
+            })
+        }
     }
 
     const myFormSubmitHandler = (e, myPyDesktopFormEl)=>{

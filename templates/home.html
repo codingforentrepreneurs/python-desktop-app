@@ -6,7 +6,10 @@
 
 
 <form class='pydesktop-form' data-py-handler="myAPIRequest">
-    <input type='text' name='name2' />
+    <input type='text' name='name' placeholder='Name' />
+    <input type='hidden' name='filePath' placeholder='Path'  />
+    <span class='currentFile'></span>
+    <button name='fileInput' >Select file</button>
     <button type='submit'>Save</button>
 </form>
 {% endblock %}
