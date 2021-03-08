@@ -1,3 +1,5 @@
+import os
+import sys
 from dataclasses import dataclass # pip install dataclasses
 import pathlib
 import jinja2
@@ -6,7 +8,12 @@ from flask import Flask, render_template, request, send_from_directory
 import webview # pip install pywebview
 from src.api import API
 
-app = Flask(__name__, static_folder='./assets', template_folder='./templates')
+if getattr(sys, "frozen", False):
+    BASE_DIR = pathlib.Path(os.path.dirname(sys.executable))
+elif __file__:
+    BASE_DIR = pathlib.Path(os.path.dirname(__file__))
+
+app = Flask(__name__, static_folder=str(BASE_DIR / 'assets'), template_folder=str(BASE_DIR / 'templates'))
 
 @app.route("/")
 def home():

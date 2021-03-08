@@ -25,4 +25,4 @@ def dir_to_thumbnails(source_dir, size=(150, 150)):
         im.thumbnail(size)
         output_path = output_dir / f"{fname}-thumb{ext}"
         im.save(output_path, 'JPEG')
-    return output_dir
+    return str(output_dir)

@@ -4,7 +4,7 @@
         {% include "css.html" %}
     </head>
 
-<body >
+<body class='bg-dark text-light'>
     <div class='container'>
         {% block content %}
     <h1>Hello base</h1>
@@ -35,10 +35,11 @@
 
                     if (x) {
                         window.pywebview.api.triggerCreateThumbs(x).then(outDir=>{
-                            console.log(outDir)
+
+                            alert(`${outDir} is full of thumbnails!`)
                         })
                     }
-                })
+                }).catch(err=>alert("This folder cannot be used"))
 
                 // calll the pywebview api and set 
                 // window.pywebview.api.selectImageFile().then(x=>{

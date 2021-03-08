@@ -1,16 +1,14 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Hello {{ name }}</h1>
-<p>Template is loaded</p>
+<div class='col-md-6 col-8 mx-auto py-5 my-5 text-center'>
+    <h3>Thumbnailer</h3>
 
-<div id='image-preview'></div>
-
-<form class='pydesktop-form' data-py-handler="myAPIRequest">
-    <input type='text' name='name' placeholder='Name' />
-    <input type='hidden' name='filePath' placeholder='Path'  />
-    <span class='currentFile'></span>
-    <button name='fileInput' >Select file</button>
-    <button type='submit'>Save</button>
-</form>
+    <form class='pydesktop-form' data-py-handler="myAPIRequest">
+        <input type='hidden' name='filePath' placeholder='Path'  />
+        <span class='currentFile'></span>
+        <button class='btn btn-block btn-success py-3' name='fileInput' >Select file</button>
+        <button class='d-none' type='submit'>Save</button>
+    </form>
+</div>
 {% endblock %}
