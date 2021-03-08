@@ -10,7 +10,7 @@ class API:
     name: str
     _window = None
 
-    def selectFile(self):
+    def selectImageFile(self):
         file_types = ("Images (*.png;*.jpg)", )
         return self._window.create_file_dialog(webview.OPEN_DIALOG, file_types=file_types)
 

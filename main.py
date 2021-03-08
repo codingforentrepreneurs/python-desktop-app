@@ -2,7 +2,7 @@ from dataclasses import dataclass # pip install dataclasses
 import pathlib
 import jinja2
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request, send_from_directory
 import webview # pip install pywebview
 from src.api import API
 
@@ -14,6 +14,13 @@ def home():
 
 @app.route("/static/")
 def serve_static():
+    path_arg = request.args.get('path') # ?path=
+    if path_arg:
+        abs_path = pathlib.Path(path_arg).resolve()
+        if abs_path.exists():
+            file_dir = abs_path.parent
+            file_name = abs_path.name
+            return send_from_directory(file_dir, file_name)
     return render_template("home.html", context={"name": "PyDesktop App"}) 
 
 if __name__ == "__main__":

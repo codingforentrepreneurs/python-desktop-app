@@ -17,7 +17,7 @@
         console.log("this is working")
     }
     const pyDesktopForms = document.getElementsByClassName("pydesktop-form") // []
-
+    const imagePreviewEl = document.getElementById("image-preview")
     for (const myPyDesktopForm of pyDesktopForms) {
         const fileSelectEl = myPyDesktopForm.elements['fileInput']
         const filePathEl = myPyDesktopForm.elements['filePath']
@@ -31,11 +31,21 @@
                     e.preventDefault()
                 }
                 // calll the pywebview api and set 
-                window.pywebview.api.saveFile().then(x=>{
+                window.pywebview.api.selectImageFile().then(x=>{
                     let newPath = x
-                    filePathEl.setAttribute("value", newPath)
-                    if (currentFileTextEl) {
-                        currentFileTextEl.innerText = newPath
+                    if (newPath) {
+                        filePathEl.setAttribute("value", newPath)
+                        if (currentFileTextEl) {
+                            currentFileTextEl.innerText = newPath
+                        }
+                        if (imagePreviewEl) {
+                            const newImage = document.createElement("img")
+                            const srcPath = "/static/?path=" + newPath
+                            newImage.setAttribute("src", srcPath)
+                            newImage.setAttribute("class", "img-fluid")
+                            imagePreviewEl.innerHTML = ""
+                            imagePreviewEl.appendChild(newImage)
+                        }
                     }
                 })
                 
