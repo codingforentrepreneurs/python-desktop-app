@@ -31,11 +31,14 @@
                     e.preventDefault()
                 }
                 // calll the pywebview api and set 
-                let newPath = "This is my value"
-                filePathEl.setAttribute("value", newPath)
-                if (currentFileTextEl) {
-                    currentFileTextEl.innerText = newPath
-                }
+                window.pywebview.api.saveFile().then(x=>{
+                    let newPath = x
+                    filePathEl.setAttribute("value", newPath)
+                    if (currentFileTextEl) {
+                        currentFileTextEl.innerText = newPath
+                    }
+                })
+                
             })
         }
     }

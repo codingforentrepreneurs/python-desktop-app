@@ -17,8 +17,31 @@ class API:
     name: str
     _window = None
 
+    def selectFile(self):
+        file_types = ("Images (*.png;*.jpg)", )
+        return self._window.create_file_dialog(webview.OPEN_DIALOG, file_types=file_types)
+
+    def selectFolder(self):
+        return self._window.create_file_dialog(webview.FOLDER_DIALOG)
+
+    def saveFile(self):
+        file_types = ("Text (*.txt)", )
+        return self._window.create_file_dialog(webview.SAVE_DIALOG, save_filename='abc.txt')
+    
+    def saveProjectFile(self):
+        file_types = ("PyDestkop (*.pydesktop)", )
+        return self._window.create_file_dialog(webview.SAVE_DIALOG, save_filename='abc.pydesktop')
+
     def myAPIRequest(self, jsonData):
-        print("my api request", jsonData)
+        data  = json.loads(jsonData)
+        destFilePath = data.get('filePath')
+        print("my api request", jsonData, )
+        if destFilePath:
+            path = pathlib.Path(destFilePath).resolve()
+            if path.exists():
+                with open(path, 'w+') as f:
+                    f.write(jsonData)
+
 
     def thisIsMyPyHandler(self, jsonData):
         print('this is my handler working', jsonData)
