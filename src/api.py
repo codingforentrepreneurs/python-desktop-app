@@ -4,6 +4,7 @@ import jinja2
 import json
 
 import webview # pip install pywebview
+from src.utils import dir_to_thumbnails
 
 @dataclass
 class API:
@@ -24,6 +25,14 @@ class API:
     def saveProjectFile(self):
         file_types = ("PyDestkop (*.pydesktop)", )
         return self._window.create_file_dialog(webview.SAVE_DIALOG, save_filename='abc.pydesktop')
+
+    def triggerCreateThumbs(self, sourceDir):
+        print('sourceDir', sourceDir)
+        source_dir = sourceDir
+        if isinstance(source_dir, list):
+            source_dir = sourceDir[0]
+        output_dir = dir_to_thumbnails(source_dir)
+        return output_dir
 
     def myAPIRequest(self, jsonData):
         data  = json.loads(jsonData)

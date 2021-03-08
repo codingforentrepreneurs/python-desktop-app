@@ -30,24 +30,34 @@
                 if (e) {
                     e.preventDefault()
                 }
-                // calll the pywebview api and set 
-                window.pywebview.api.selectImageFile().then(x=>{
-                    let newPath = x
-                    if (newPath) {
-                        filePathEl.setAttribute("value", newPath)
-                        if (currentFileTextEl) {
-                            currentFileTextEl.innerText = newPath
-                        }
-                        if (imagePreviewEl) {
-                            const newImage = document.createElement("img")
-                            const srcPath = "/static/?path=" + newPath
-                            newImage.setAttribute("src", srcPath)
-                            newImage.setAttribute("class", "img-fluid")
-                            imagePreviewEl.innerHTML = ""
-                            imagePreviewEl.appendChild(newImage)
-                        }
+
+                window.pywebview.api.selectFolder().then(x=>{
+
+                    if (x) {
+                        window.pywebview.api.triggerCreateThumbs(x).then(outDir=>{
+                            console.log(outDir)
+                        })
                     }
                 })
+
+                // calll the pywebview api and set 
+                // window.pywebview.api.selectImageFile().then(x=>{
+                //     let newPath = x
+                //     if (newPath) {
+                //         filePathEl.setAttribute("value", newPath)
+                //         if (currentFileTextEl) {
+                //             currentFileTextEl.innerText = newPath
+                //         }
+                //         if (imagePreviewEl) {
+                //             const newImage = document.createElement("img")
+                //             const srcPath = "/static/?path=" + newPath
+                //             newImage.setAttribute("src", srcPath)
+                //             newImage.setAttribute("class", "img-fluid")
+                //             imagePreviewEl.innerHTML = ""
+                //             imagePreviewEl.appendChild(newImage)
+                //         }
+                //     }
+                // })
                 
             })
         }

@@ -1,0 +1,14 @@
+click==7.1.2
+dataclasses==0.8
+Flask==1.1.2
+importlib-resources==5.1.0
+itsdangerous==1.1.0
+Jinja2==2.11.3
+MarkupSafe==1.1.1
+Pillow==8.1.2
+pyobjc-core==7.1
+pyobjc-framework-Cocoa==7.1
+pyobjc-framework-WebKit==7.1
+pywebview==3.4
+Werkzeug==1.0.1
+zipp==3.4.0
