@@ -18,9 +18,11 @@ The advantage of using pywebview is that:
 - Simple and powerful API
 - Cross Platform (macOS, Windows, Linux)
 
+> Code updated to work with Python 3.10 and other latest software versions.
+
 #### Recommended skills
-- [Python basics](/projects/30-days-python-38)
-- [JavaScript basics](/t/javascript)
+- [Python basics](https://cfe.sh/projects/30-days-python-38)
+- [JavaScript basics](https://cfe.sh/t/javascript)
 - React/Vue/Angular experience is a plus
 
 
